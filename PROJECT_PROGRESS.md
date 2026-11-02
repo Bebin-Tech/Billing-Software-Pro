@@ -1,5 +1,7 @@
 # Project progress
 
+Deployment update — 2 November 2026: frontend published at https://gst-billing-pro.vercel.app and verified (HTTP 200). API gateway returns an explicit 503 while Render and managed MySQL remain unconfigured, as confirmed by the user. Three gateway tests, five frontend tests and the frontend build passed. A free-service Render blueprint and connection instructions are committed. **Full-stack deployment is incomplete; login/billing are not online.** See docs/deployment.md.
+
 Updated: 1 November 2026. **In progress; not production-ready.**
 
 ## Implemented and initially verified
