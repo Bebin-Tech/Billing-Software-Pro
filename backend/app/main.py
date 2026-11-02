@@ -23,6 +23,8 @@ attempts = defaultdict(deque)
 @app.middleware('http')
 async def guards(request: Request, call_next):
     started = time.monotonic()
+    if engine is None and request.url.path.startswith('/api/v1/'):
+        return JSONResponse({'detail': 'The FastAPI backend is running on Vercel. MySQL is not connected yet; configure DATABASE_URL and apply the migrations.'}, status_code=503, headers={'Cache-Control':'no-store'})
     if request.url.path.startswith('/api/v1/auth/') and request.method == 'POST':
         key = request.client.host if request.client else 'unknown'
         queue = attempts[key]
@@ -45,11 +47,13 @@ async def conflict(request, exc):
 
 @app.get('/health')
 def health():
-    return {'status': 'ok'}
+    return {'status': 'ok', 'runtime': 'fastapi'}
 
 
 @app.get('/health/ready')
 def ready():
+    if engine is None:
+        return JSONResponse({'status': 'MySQL not configured'},status_code=503)
     try:
         with engine.connect() as connection: connection.execute(text('SELECT 1'))
         return {'status': 'ready'}
