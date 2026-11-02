@@ -1,6 +1,6 @@
 # Project progress
 
-Deployment update — 2 November 2026: frontend published at https://gst-billing-pro.vercel.app and verified (HTTP 200). API gateway returns an explicit 503 while Render and managed MySQL remain unconfigured, as confirmed by the user. Three gateway tests, five frontend tests and the frontend build passed. A free-service Render blueprint and connection instructions are committed. **Full-stack deployment is incomplete; login/billing are not online.** See docs/deployment.md.
+Deployment update — 2 November 2026: hosting now uses a single Vercel Services project with React and FastAPI. Render and the external backend proxy have been removed. The user explicitly chose to keep MySQL. A persistent MySQL provider still needs to be connected through Vercel. Production signing secret and origin/cookie settings are configured. Twenty backend tests pass; three MySQL tests are skipped because the temporary instance is stopped. Database setup remains incomplete; login/billing are not online. See docs/deployment.md.
 
 Updated: 1 November 2026. **In progress; not production-ready.**
 
@@ -35,7 +35,7 @@ Updated: 1 November 2026. **In progress; not production-ready.**
 6. Finance: multi-document allocation, advances/refunds, expenses/attachments, banking, customer/supplier ledgers, full payables and aging.
 7. GST: complete GSTR-1/GSTR-3B preparation, imported-register reconciliation, qualified ITC eligibility, authorized e-invoice/e-way-bill adapters and credentials. No GST portal filing is implemented or claimed.
 8. Advanced reports: P&L/cashflow/stock reports, remaining PDF/Excel exports, notification delivery, background jobs and richer charts based on actual data.
-9. Production: distributed rate limiting, cross-tab refresh coordination, broader security/dependency review, complete MySQL API suite and browser E2E tests, performance/accessibility/PDF review, backup restore validation, monitoring and actual Vercel/Render/managed-MySQL deployment.
+9. Production: distributed rate limiting, cross-tab refresh coordination, broader security/dependency review, complete MySQL API suite and browser E2E tests, performance/accessibility/PDF review, backup restore validation, monitoring and complete Vercel Services/managed-MySQL deployment.
 
 ## External dependencies
 
